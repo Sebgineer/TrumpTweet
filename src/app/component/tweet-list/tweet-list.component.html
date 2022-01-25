@@ -1,0 +1,28 @@
+<div style="width: 75%; margin: 0 auto;">
+    <table class="table table-sm table-dark table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <td scope="col">#</td>
+                <td scope="col">Tweets</td>
+                <td scope="col">Likes</td>
+                <td scope="col">Date</td>
+            </tr>
+        </thead>
+        <tbody *ngFor="let tweet of Tweets; index as i">
+            <tr [class.kage]="TopLikes(tweet.likes, tweet.date)" *ngIf="SearchWord(tweet.text); else Green">
+                <td scopr="row">{{ i + 1 }}</td> 
+                <td>{{tweet.text}}</td> 
+                <td>{{tweet.likes | number}}</td>
+                <td>{{tweet.date | date}}</td>
+            </tr>
+            <ng-template #Green>
+                <tr [class.kage]="TopLikes(tweet.likes, tweet.date)" style="background-color: green; --bs-table-bg: green; --bs-table-striped-bg: green; --bs-table-hover-bg: limegreen;">
+                    <td scopr="row">{{ i + 1 }}</td>
+                    <td>{{tweet.text}}</td>
+                    <td>{{tweet.likes | number}}</td>
+                    <td>{{tweet.date | date}}</td>
+                </tr>
+            </ng-template>
+        </tbody>
+    </table>
+</div>
